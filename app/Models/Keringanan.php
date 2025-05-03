@@ -28,5 +28,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Keringanan extends Model
 {
+    protected $fillable = [
+        'nim',
+        'id_tahun',
+        'jenis_keringanan',
+        'jumlah_potongan',
+        'keterangan',
+    ];
     // Model implementation
 }
