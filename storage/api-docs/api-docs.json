@@ -1,0 +1,1665 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "SIMPADU Keuangan API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/keuangan/jenis-tagihan": {
+            "get": {
+                "tags": [
+                    "Jenis Tagihan"
+                ],
+                "summary": "Ambil semua jenis tagihan",
+                "operationId": "67ab77997896fc009d5a4e3961ac62a2",
+                "responses": {
+                    "200": {
+                        "description": "Berhasil",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/JenisTagihan"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Jenis Tagihan"
+                ],
+                "summary": "Tambah jenis tagihan baru",
+                "operationId": "76c9f53a2758d9d8dd29eea287066200",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nama_jenis_tagihan"
+                                ],
+                                "properties": {
+                                    "nama_jenis_tagihan": {
+                                        "type": "string",
+                                        "example": "UKT"
+                                    },
+                                    "deskripsi_tagihan": {
+                                        "type": "string",
+                                        "example": "Uang Kuliah Tunggal"
+                                    },
+                                    "is_active": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Berhasil dibuat",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JenisTagihan"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                }
+            }
+        },
+        "/api/keuangan/jenis-tagihan/{id}": {
+            "get": {
+                "tags": [
+                    "Jenis Tagihan"
+                ],
+                "summary": "Detail jenis tagihan",
+                "operationId": "9875503586cabbc174823f6f91717610",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data ditemukan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JenisTagihan"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Jenis Tagihan"
+                ],
+                "summary": "Update jenis tagihan",
+                "operationId": "0ec6ebdcb3277cf737adab68e0b8f70a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nama_jenis_tagihan": {
+                                        "type": "string"
+                                    },
+                                    "deskripsi_tagihan": {
+                                        "type": "string"
+                                    },
+                                    "is_active": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Data diperbarui",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JenisTagihan"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Jenis Tagihan"
+                ],
+                "summary": "Hapus jenis tagihan",
+                "operationId": "6fa6405417bc868f76652cf33112730c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data dihapus",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data dihapus"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            }
+        },
+        "/api/keringanan": {
+            "get": {
+                "operationId": "c2541f85df9b1a52b2921e34173382c6",
+                "responses": {
+                    "200": {
+                        "description": "List of Keringanan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Keringanan"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/keuangan/keringanan": {
+            "post": {
+                "tags": [
+                    "Keringanan"
+                ],
+                "summary": "Tambahkan data keringanan",
+                "operationId": "f2bf705eded70e0f27d0bdb6522e6478",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nim",
+                                    "id_tahun",
+                                    "jenis_keringanan",
+                                    "jumlah_potongan"
+                                ],
+                                "properties": {
+                                    "nim": {
+                                        "type": "string",
+                                        "example": "220501001"
+                                    },
+                                    "id_tahun": {
+                                        "type": "integer",
+                                        "example": 20242
+                                    },
+                                    "jenis_keringanan": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Beasiswa",
+                                            "Bantuan",
+                                            "Lainnya"
+                                        ],
+                                        "example": "Beasiswa"
+                                    },
+                                    "jumlah_potongan": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 500000
+                                    },
+                                    "keterangan": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Data ditambahkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Keringanan"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                }
+            }
+        },
+        "/api/keuangan/keringanan/{id}": {
+            "get": {
+                "tags": [
+                    "Keringanan"
+                ],
+                "summary": "Detail keringanan",
+                "operationId": "42feae9efbe98395f0752af88d0d3ed6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Keringanan"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Keringanan"
+                ],
+                "summary": "Update data keringanan",
+                "operationId": "7f67b5596224887a991e2af0c4a9bac2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "jenis_keringanan": {
+                                        "type": "string"
+                                    },
+                                    "jumlah_potongan": {
+                                        "type": "number"
+                                    },
+                                    "keterangan": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Data diperbarui",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Keringanan"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Keringanan"
+                ],
+                "summary": "Hapus data keringanan",
+                "operationId": "0e05e89ce73136dafb07734b61466234",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data dihapus",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data dihapus"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            }
+        },
+        "/api/keuangan/log-aktivitas": {
+            "get": {
+                "tags": [
+                    "Log Aktivitas"
+                ],
+                "summary": "Ambil semua data log aktivitas",
+                "operationId": "3fb0fadbd5b99816423a11f6eab0827c",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/LogAktivitas"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Log Aktivitas"
+                ],
+                "summary": "Buat log aktivitas baru",
+                "operationId": "d5cff47aa14699313e78aecbbca65aa4",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id_pegawai",
+                                    "aktivitas",
+                                    "entitas",
+                                    "entitas_id"
+                                ],
+                                "properties": {
+                                    "id_pegawai": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "aktivitas": {
+                                        "type": "string",
+                                        "example": "Menambah data mahasiswa"
+                                    },
+                                    "entitas": {
+                                        "type": "string",
+                                        "example": "Mahasiswa"
+                                    },
+                                    "entitas_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "data_lama": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "data_baru": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LogAktivitas"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                }
+            }
+        },
+        "/api/keuangan/log-aktivitas/{id}": {
+            "get": {
+                "tags": [
+                    "Log Aktivitas"
+                ],
+                "summary": "Detail log aktivitas",
+                "operationId": "854a260fccf6cadda8b02fd3d2679398",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LogAktivitas"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Log Aktivitas"
+                ],
+                "summary": "Hapus log aktivitas",
+                "operationId": "087a958d60ccb8f79c3f0131cc81ad8d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Log dihapus",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Log dihapus"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            }
+        },
+        "/api/keuangan/pembayaran": {
+            "get": {
+                "tags": [
+                    "Pembayaran"
+                ],
+                "summary": "Ambil semua data pembayaran",
+                "operationId": "9e254db6eb04b2dc046de45e5924f1da",
+                "responses": {
+                    "200": {
+                        "description": "Berhasil mengambil data"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Pembayaran"
+                ],
+                "summary": "Simpan data pembayaran",
+                "operationId": "609e63d5d804e1167b4fa406c18df0b6",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nim",
+                                    "kategori_ukt_id",
+                                    "tanggal_pembayaran",
+                                    "jumlah",
+                                    "metode_pembayaran"
+                                ],
+                                "properties": {
+                                    "nim": {
+                                        "type": "string"
+                                    },
+                                    "kategori_ukt_id": {
+                                        "type": "integer"
+                                    },
+                                    "tanggal_pembayaran": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "jumlah": {
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "metode_pembayaran": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Berhasil disimpan"
+                    }
+                }
+            }
+        },
+        "/api/keuangan/pembayaran/{id}": {
+            "get": {
+                "tags": [
+                    "Pembayaran"
+                ],
+                "summary": "Lihat detail pembayaran",
+                "operationId": "6c6e067999e83c2ffdb6a7d4b2b4feb1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detail ditemukan"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Pembayaran"
+                ],
+                "summary": "Update pembayaran",
+                "operationId": "497e404d65f2dd2d1181a1d3e75e4042",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nim": {
+                                        "type": "string"
+                                    },
+                                    "kategori_ukt_id": {
+                                        "type": "integer"
+                                    },
+                                    "tanggal_pembayaran": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "jumlah": {
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "metode_pembayaran": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil diupdate"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Pembayaran"
+                ],
+                "summary": "Hapus pembayaran",
+                "operationId": "e7d77f8822ddc2b78111518ebb99284d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data dihapus"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            }
+        },
+        "/api/keu-tagihan": {
+            "get": {
+                "tags": [
+                    "Keu Tagihan"
+                ],
+                "summary": "Menampilkan semua data tagihan",
+                "operationId": "890c28958053869c5a441479248e43b6",
+                "responses": {
+                    "200": {
+                        "description": "Berhasil mengambil data"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Keu Tagihan"
+                ],
+                "summary": "Membuat tagihan baru",
+                "operationId": "de04348be5e08883bc8494791616fbf7",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id_mahasiswa",
+                                    "id_jenis_tagihan",
+                                    "jumlah",
+                                    "id_tahun_ajar"
+                                ],
+                                "properties": {
+                                    "id_mahasiswa": {
+                                        "type": "integer"
+                                    },
+                                    "id_jenis_tagihan": {
+                                        "type": "integer"
+                                    },
+                                    "jumlah": {
+                                        "type": "number"
+                                    },
+                                    "id_tahun_ajar": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Berhasil disimpan"
+                    }
+                }
+            }
+        },
+        "/api/keu-tagihan/{id}": {
+            "get": {
+                "tags": [
+                    "Keu Tagihan"
+                ],
+                "summary": "Menampilkan detail tagihan",
+                "operationId": "4c331ac876eec5830b094f652c092788",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Keu Tagihan"
+                ],
+                "summary": "Memperbarui data tagihan",
+                "operationId": "f5713b8f040e61609bfcea09a225cfb8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "jumlah": {
+                                        "type": "number"
+                                    },
+                                    "id_jenis_tagihan": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil diperbarui"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Keu Tagihan"
+                ],
+                "summary": "Menghapus tagihan",
+                "operationId": "36beedea31143be252633ab2aad2797b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Berhasil dihapus"
+                    }
+                }
+            }
+        },
+        "/api/keu-tahun-ajar": {
+            "get": {
+                "tags": [
+                    "Keu Tahun Ajar"
+                ],
+                "summary": "Get list of academic years",
+                "operationId": "164574143b5a25049fbebb0f59286165",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/KeuTahunAjar"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Keu Tahun Ajar"
+                ],
+                "summary": "Membuat tahun ajaran baru",
+                "operationId": "2963071affe96f9542b3e0ea21bb6cfc",
+                "requestBody": {
+                    "description": "Data tahun ajaran",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "tahun_ajaran",
+                                    "semester"
+                                ],
+                                "properties": {
+                                    "tahun_ajaran": {
+                                        "type": "string",
+                                        "example": "2023/2024"
+                                    },
+                                    "semester": {
+                                        "type": "string",
+                                        "example": "Ganjil"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Data berhasil dibuat"
+                    }
+                }
+            }
+        },
+        "/api/keu-tahun-ajar/{id}": {
+            "get": {
+                "tags": [
+                    "Keu Tahun Ajar"
+                ],
+                "summary": "Mendapatkan detail tahun ajaran",
+                "description": "Mengembalikan data detail tahun ajaran berdasarkan ID",
+                "operationId": "getTahunAjarById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID tahun ajaran",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KeuTahunAjar"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Keu Tahun Ajar"
+                ],
+                "summary": "Memperbarui tahun ajaran",
+                "description": "Memperbarui data tahun ajaran berdasarkan ID",
+                "operationId": "updateTahunAjar",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID tahun ajaran yang akan diperbarui",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Data tahun ajaran yang diperbarui",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "tahun_ajaran": {
+                                        "type": "string",
+                                        "example": "2023/2024"
+                                    },
+                                    "semester": {
+                                        "type": "string",
+                                        "example": "Ganjil"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Data berhasil diperbarui",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/KeuTahunAjar"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Keu Tahun Ajar"
+                ],
+                "summary": "Menghapus tahun ajaran",
+                "description": "Menghapus data tahun ajaran berdasarkan ID",
+                "operationId": "deleteTahunAjar",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID tahun ajaran yang akan dihapus",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Data berhasil dihapus"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            }
+        },
+        "/api/keuangan/status-pembayaran": {
+            "get": {
+                "tags": [
+                    "Status Pembayaran"
+                ],
+                "summary": "Ambil semua status pembayaran",
+                "operationId": "63af60d32c44bbd2d699017bc3f6a9c6",
+                "responses": {
+                    "200": {
+                        "description": "Berhasil",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/StatusPembayaran"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Status Pembayaran"
+                ],
+                "summary": "Buat status pembayaran baru",
+                "operationId": "32717b12bf3e646b6593ac7d9a26471c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nim",
+                                    "kategori_ukt_id",
+                                    "status"
+                                ],
+                                "properties": {
+                                    "nim": {
+                                        "type": "string",
+                                        "example": "220501001"
+                                    },
+                                    "kategori_ukt_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Lunas",
+                                            "Belum Bayar"
+                                        ],
+                                        "example": "Lunas"
+                                    },
+                                    "tanggal_bayar": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Data berhasil dibuat",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StatusPembayaran"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                }
+            }
+        },
+        "/api/keuangan/status-pembayaran-detail": {
+            "get": {
+                "tags": [
+                    "Status Pembayaran"
+                ],
+                "summary": "Ambil semua status pembayaran lengkap dengan data UKT",
+                "operationId": "37e97de3c3601640453f98d1aa93d07f",
+                "responses": {
+                    "200": {
+                        "description": "Berhasil",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/StatusPembayaranDetail"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/keuangan/status-pembayaran/{id}": {
+            "get": {
+                "tags": [
+                    "Status Pembayaran"
+                ],
+                "summary": "Detail status pembayaran",
+                "operationId": "ab2a19417f3a3ca207871b5812465e60",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StatusPembayaran"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Status Pembayaran"
+                ],
+                "summary": "Update status pembayaran",
+                "operationId": "1baf66815b2cf836a9174053a8666bec",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Lunas",
+                                            "Belum Bayar"
+                                        ]
+                                    },
+                                    "tanggal_bayar": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Data berhasil diperbarui",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StatusPembayaran"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Status Pembayaran"
+                ],
+                "summary": "Hapus status pembayaran",
+                "operationId": "13ebb0160555001662cdce58b9530a3f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data berhasil dihapus",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data berhasil dihapus"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "JenisTagihan": {
+                "required": [
+                    "nama_jenis_tagihan"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nama_jenis_tagihan": {
+                        "type": "string",
+                        "example": "UKT"
+                    },
+                    "deskripsi_tagihan": {
+                        "type": "string",
+                        "example": "Uang Kuliah Tunggal"
+                    },
+                    "is_active": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "KeuTahunAjar": {
+                "required": [
+                    "tahun_ajaran",
+                    "semester"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "tahun_ajaran": {
+                        "type": "string",
+                        "example": "2023/2024"
+                    },
+                    "semester": {
+                        "type": "string",
+                        "enum": [
+                            "Ganjil",
+                            "Genap"
+                        ],
+                        "example": "Ganjil"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Keringanan": {
+                "required": [
+                    "nim",
+                    "jenis_keringanan",
+                    "jumlah_potongan"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nim": {
+                        "type": "string",
+                        "example": "220501001"
+                    },
+                    "id_tahun": {
+                        "type": "integer",
+                        "example": 2023
+                    },
+                    "jenis_keringanan": {
+                        "type": "string",
+                        "enum": [
+                            "Beasiswa",
+                            "Bantuan",
+                            "Lainnya"
+                        ],
+                        "example": "Beasiswa"
+                    },
+                    "jumlah_potongan": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 500000
+                    },
+                    "keterangan": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "mahasiswa": {
+                        "$ref": "#/components/schemas/Mahasiswa"
+                    },
+                    "tahun_ajar": {
+                        "$ref": "#/components/schemas/TahunAjar"
+                    }
+                },
+                "type": "object"
+            },
+            "LogAktivitas": {
+                "required": [
+                    "user_id",
+                    "aktivitas"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 123
+                    },
+                    "aktivitas": {
+                        "type": "string",
+                        "example": "Login ke sistem"
+                    },
+                    "ip_address": {
+                        "type": "string",
+                        "example": "192.168.1.1"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-05-01T08:30:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-05-01T08:30:00Z"
+                    }
+                },
+                "type": "object"
+            },
+            "KeuTagihan": {
+                "required": [
+                    "nim",
+                    "id_tahun",
+                    "id_komponen",
+                    "jumlah"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nim": {
+                        "type": "string",
+                        "example": "220501001"
+                    },
+                    "id_tahun": {
+                        "type": "integer",
+                        "example": 2023
+                    },
+                    "id_komponen": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "jumlah": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 1500000
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "belum_lunas"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "TahunAjar": {
+                "required": [
+                    "tahun",
+                    "semester"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "tahun": {
+                        "type": "string",
+                        "example": "2023/2024"
+                    },
+                    "semester": {
+                        "type": "string",
+                        "enum": [
+                            "Ganjil",
+                            "Genap"
+                        ],
+                        "example": "Ganjil"
+                    },
+                    "is_aktif": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Mahasiswa": {
+                "title": "Mahasiswa",
+                "required": [
+                    "id",
+                    "nama"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 123
+                    },
+                    "nama": {
+                        "type": "string",
+                        "example": "Budi Santoso"
+                    },
+                    "nim": {
+                        "type": "string",
+                        "example": "1234567890"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "budi@example.com"
+                    }
+                },
+                "type": "object"
+            },
+            "StatusPembayaran": {
+                "required": [
+                    "kode",
+                    "nama"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "kode": {
+                        "type": "string",
+                        "example": "LUNAS"
+                    },
+                    "nama": {
+                        "type": "string",
+                        "example": "Lunas"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-05-01T08:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-05-01T08:00:00Z"
+                    }
+                },
+                "type": "object"
+            },
+            "StatusPembayaranDetail": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "kode": {
+                        "type": "string",
+                        "example": "LUNAS"
+                    },
+                    "nama": {
+                        "type": "string",
+                        "example": "Lunas"
+                    },
+                    "kategori": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": 10
+                            },
+                            "nama": {
+                                "type": "string",
+                                "example": "Akademik"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-05-01T08:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-05-01T08:00:00Z"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Keringanan",
+            "description": "Manajemen keringanan biaya"
+        },
+        {
+            "name": "Log Aktivitas",
+            "description": "Manajemen log aktivitas sistem"
+        },
+        {
+            "name": "Jenis Tagihan",
+            "description": "Jenis Tagihan"
+        },
+        {
+            "name": "Pembayaran",
+            "description": "Pembayaran"
+        },
+        {
+            "name": "Keu Tagihan",
+            "description": "Keu Tagihan"
+        },
+        {
+            "name": "Keu Tahun Ajar",
+            "description": "Keu Tahun Ajar"
+        },
+        {
+            "name": "Status Pembayaran",
+            "description": "Status Pembayaran"
+        }
+    ]
+}
